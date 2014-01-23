@@ -1,0 +1,21 @@
+application: evenbrightappraisal
+version: 1
+runtime: php
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /js
+  static_dir: html/js
+
+- url: /css
+  static_dir: html/css
+
+- url: /image
+  static_dir: html/image
+
+- url: /font
+  static_dir: html/font
+
+- url: .*
+  script: php/app/controller/home.php
