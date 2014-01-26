@@ -2,6 +2,7 @@
 /*** Overall Styles ***/
 
 /*** Component Styles ***/
+/*
 .clearfix:after {
     display: block;
     content: ".";
@@ -22,7 +23,7 @@ html[xmlns] .clearfix {
 * html .clearfix {
     height: 1%;
 }
-
+*/
 /*** Component Styles ***/
 
 
