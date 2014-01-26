@@ -26,6 +26,20 @@ html[xmlns] .clearfix {
 /*** Component Styles ***/
 
 
+/*** bootstrapjs rewrites ***/
+.navbar{
+    margin-bottom: 5px;
+}
+
+.panel-body{
+    padding: 5px;
+}
+
+.form-group{
+    margin-bottom: 5px;
+}
+/*** bootstrapjs rewrites ***/
+
 /*** bootstrapjs extension ***/
 .navbar-logo{
     width: 35px;
@@ -35,12 +49,54 @@ html[xmlns] .clearfix {
 .navbar-last{
     margin-right: 10px;
 }
+
+.panel-login{
+    position: absolute;
+    top: -5px;
+    right: 0;
+    width: 200px;
+    height: 160px;
+    z-index: 1000;
+}
+
+.panel-signup{
+    position: absolute;
+    top: -5px;
+    right: 0;
+    width: 200px;
+    height: 160px;
+    z-index: 1000;
+}
+
+.panel-forgot-password{
+    position: absolute;
+    top: -5px;
+    right: 0;
+    width: 200px;
+    height: 160px;
+    z-index: 1000;
+}
+
+.login-signup-panel-container{
+    position: relative;
+}
+
+.remember-me-text{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.forgot-password-link{
+    float: right;
+    text-decoration: none;
+    font-size: smaller;
+}
 /*** bootstrapjs extension ***/
 
 
 .head{
     width:900px;
-    margin-top: 20px;
+    margin-top: 5px;
     margin-left:auto;
     margin-right:auto;
 }
@@ -62,7 +118,7 @@ html[xmlns] .clearfix {
 }
 
 .body{
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 .foot{

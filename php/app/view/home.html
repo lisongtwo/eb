@@ -44,45 +44,89 @@
                     <p class="navbar-text"><span class="glyphicon glyphicon-phone-alt"></span><span style="margin-left:5px;">(408)644-4646</span></p>
                 </li>
                 <li>
-                    <div class="btn-group">
-                        <!--<button type="button" class="btn btn-primary navbar-btn">Login</button>-->
-
-                        <div class="btn-group navbar-btn">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                Login
-                            </button>
-                            <div class="dropdown-menu" style="width:300px;padding:10px;">
-                                <form class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label for="loginEmail" class="col-sm-3 control-label">Email</label>
-                                        <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="loginEmail" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-3 col-sm-9">
-                                            <button type="submit" class="btn btn-default">Sign in</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <div class="btn-group navbar-btn navbar-last">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                Signup
-                            </button>
-                            <div class="dropdown-menu">
-                                adfdsf
-                            </div>
-                        </div>
-
-                        <!--<button type="button" class="btn btn-primary navbar-btn navbar-last">Signup</button>-->
+                    <div class="btn-group navbar-btn">
+                        <button type="button" id="loginButton" class="btn btn-primary">
+                            Log In  <span class="caret"></span>
+                        </button>
+                        <button type="button" id="signupButton" class="btn btn-primary navbar-last">
+                            Sign Up  <span class="caret"></span>
+                        </button>
                     </div>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
+    <div class="login-signup-panel-container">
+        <div id="loginPanel" class="panel panel-default panel-login collapse">
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="loginEmail" class="col-sm-3 control-label sr-only">Email:</label>
+                        <div class="col-sm-12">
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword" class="col-sm-3 control-label sr-only">Password:</label>
+                        <div class="col-sm-12">
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="checkbox"><span class="remember-me-text">remember me</span>
+                            <button type="submit" class="btn btn-default btn-small pull-right">Log In</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <a id="forgotPasswordLink" class="forgot-password-link" href="#">forgot password</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="signupPanel" class="panel panel-default panel-signup collapse">
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="signupEmail" class="col-sm-3 control-label sr-only">Email:</label>
+                        <div class="col-sm-12">
+                            <input type="email" class="form-control" id="signupEmail" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword" class="col-sm-3 control-label sr-only">Password:</label>
+                        <div class="col-sm-12">
+                            <input type="password" class="form-control" id="signupPassword" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-default btn-small pull-right">Sign Up</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="forgotPasswordPanel" class="panel panel-default panel-forgot-password collapse">
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="forgotPasswordEmail" class="col-sm-3 control-label sr-only">Email:</label>
+                        <div class="col-sm-12">
+                            <input type="email" class="form-control" id="forgotPasswordEmail" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-default btn-small pull-right">Send Email</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="body">
@@ -345,6 +389,23 @@
                     break;
             }
         });
+
+        $('#loginButton').click(function(){
+            $('#loginPanel').toggleClass('collapse').toggleClass('collapsing');
+            $('#signupPanel').addClass('collapse').removeClass('collapsing');
+            $('#forgotPasswordPanel').addClass('collapse').removeClass('collapsing');
+        });
+        $('#signupButton').click(function(){
+            $('#loginPanel').addClass('collapse').removeClass('collapsing');
+            $('#signupPanel').toggleClass('collapse').toggleClass('collapsing');
+            $('#forgotPasswordPanel').addClass('collapse').removeClass('collapsing');
+        });
+        $('#forgotPasswordLink').click(function(){
+            $('#loginPanel').addClass('collapse').removeClass('collapsing');
+            $('#signupPanel').addClass('collapse').removeClass('collapsing');
+            $('#forgotPasswordPanel').toggleClass('collapse').toggleClass('collapsing');
+        });
+
     });
 </script>
 </body>
