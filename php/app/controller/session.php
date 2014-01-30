@@ -6,8 +6,8 @@
  * Time: 9:47 PM
  */
 
-$urlParts   = preg_split("/\//", $_ENV["REQUEST_URI"]);
-$reqType    = strtoupper($_ENV["REQUEST_METHOD"]);
+$urlParts   = preg_split("/\//", $_SERVER["REQUEST_URI"]);
+$reqType    = strtoupper($_SERVER["REQUEST_METHOD"]);
 
 
 var_dump($urlParts);
