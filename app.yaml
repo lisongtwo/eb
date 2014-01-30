@@ -17,5 +17,11 @@ handlers:
 - url: /font
   static_dir: html/font
 
+- url: /phpinfo
+  script: phpinfo.php
+
+- url: /session/.*
+  script: php/app/controller/session.php
+
 - url: .*
   script: php/app/controller/home.php
