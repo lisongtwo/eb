@@ -103,29 +103,29 @@
                     <div class="form-group">
                         <div class="col-sm-6">
                             <label for="signupFirstName" class="control-label sr-only">First Name:</label>
-                            <input type="text" class="form-control plain-required" id="signupFirstName" placeholder="First Name">
+                            <input type="text" class="form-control plain-required" id="signupFirstName" name="firstName" placeholder="First Name">
                         </div>
                         <div class="col-sm-6">
                             <label for="signupLastName" class="control-label sr-only">Last Name:</label>
-                            <input type="text" class="form-control plain-required" id="signupLastName" placeholder="Last Name">
+                            <input type="text" class="form-control plain-required" id="signupLastName" name="lastName" placeholder="Last Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
                             <label for="signupEmail" class="control-label sr-only">Email:</label>
-                            <input type="text" class="form-control plain-required" id="signupEmail" placeholder="Email">
+                            <input type="text" class="form-control plain-required" id="signupEmail" name="email" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
                             <label for="signupEmail2" class="control-label sr-only">Re-enter Email:</label>
-                            <input type="text" class="form-control" id="signupEmail2" placeholder="Re-enter Email">
+                            <input type="text" class="form-control" id="signupEmail2" name="email2" placeholder="Re-enter Email">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
                             <label for="signupPassword" class="control-label sr-only">Password:</label>
-                            <input type="password" class="form-control plain-required" id="signupPassword" placeholder="Password">
+                            <input type="password" class="form-control plain-required" id="signupPassword" name="password" placeholder="Password">
                         </div>
                     </div>
                     <div class="form-group">
@@ -513,9 +513,10 @@
                     error: function(){
 
                     },
-                    success: function(){
-
-                    }
+                    success: function(data){
+                        console.log(data);
+                    },
+                    dataType: 'json'
                 });
             },
 
