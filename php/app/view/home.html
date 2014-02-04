@@ -514,7 +514,9 @@
 
                     },
                     success: function(data){
-                        console.log(data);
+                        if(data.status == 'fail'){
+                            me.showError($('#signupEmail'), data.message);
+                        }
                     },
                     dataType: 'json'
                 });
