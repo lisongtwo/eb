@@ -6,6 +6,8 @@
  * Time: 9:47 PM
  */
 
+sleep(5);
+
 $urlParts   = preg_split("/\//", $_SERVER["REQUEST_URI"]);
 $reqType    = strtoupper($_SERVER["REQUEST_METHOD"]);
 
@@ -47,7 +49,7 @@ function toSignup(){
     if($result){
         $numberOfExistingEmail = $result->fetch_object()->total;
         if($numberOfExistingEmail > 0){
-            throw new Exception('Email is registered already');
+            throw new Exception('EMAIL_DUP');
         }
     }
 
