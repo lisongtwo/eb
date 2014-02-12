@@ -63,6 +63,83 @@ $(function(){
         });
 
 
+    //login form js
+    ({
+        showError : function($el, strError){
+            $el.parent().addClass('has-error');
+            $el.prev().removeClass('sr-only').html(strError);
+        },
+        hideError : function($el){
+            $el.parent().removeClass('has-error');
+            $el.prev().addClass('sr-only');
+        },
+        validateEmailField: function($email){
+            if(this.validateEmailFormat($email.val())){
+                this.hideError($email);
+            }else{
+                this.showError($email, 'invalid email address');
+            }
+        },
+        validateEmailFormat: function(email){
+            return /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email);
+        },
+        attachListners: function(){
+            var me = this;
+            $('#loginForm input.plain-required').keydown(function(){
+                me.hideError($(this));
+            });
+            $('#loginEmail').blur(function(){
+                me.validateEmailField($(this));
+            });
+        },
+        createAjaxForm: function(){
+            var me = this;
+
+            $('#loginForm').ajaxForm({
+                beforeSubmit: function(arr, $form, options){
+                    (function validation(){
+                        var requiredFieldIds = ['loginEmail', 'loginPassword'], i, $one;
+                        for(i in requiredFieldIds){
+                            $one = $('#' + requiredFieldIds[i]);
+                            if(!$one.val()){    //if no input yet
+                                me.showError($one, 'no value input');
+                            }
+                        }
+
+                        //validate email address
+                        me.validateEmailField($('#loginEmail'));
+                    })();
+
+                    if($('#loginPanel .has-error').length > 0){
+                        return false;
+                    }
+
+                    $('#loginSubmit').button('loading');
+                },
+                error: function(){
+
+                },
+                success: function(data){
+                    if(data.status == 'fail'){
+                        var message = eb.message.get('login', data.message);
+                        me.showError($('#loginEmail'), message);
+                    }else{
+                        alert('about to redirect to home page');
+                    }
+                },
+                complete: function(xhr, text){
+                    $('#loginSubmit').button('reset');
+                },
+                dataType: 'json'
+            })
+        },
+
+        exec: function(){
+            this.attachListners();
+            this.createAjaxForm();
+        }
+    }).exec();
+
     //signup form js
     ({
         showError : function($el, strError){
@@ -146,6 +223,8 @@ $(function(){
                                 me.hideError($('#signupErrorPlaceholder'));
                             }, 5000);
                         }
+                    }else{
+                        alert('about to redirect to home page');
                     }
                 },
                 complete: function(xhr, text){

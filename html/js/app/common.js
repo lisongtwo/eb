@@ -27,14 +27,17 @@ window.eb.message = {
      * the default module
      */
     default:    {
-        DEFAULT:    'Global default issue'
+        DEFAULT:        'Global default issue',
+        SYSTEM_ERROR:   'System is busy now, please try it again later'
     },
 
     /**
      *  the login module. it includes login, signup, forgot password
      */
     login:      {
-        DEFAULT:    'Unknown issue',
-        EMAIL_DUP : 'Email is registered already'
+        WRONG_ACTION:   'Wrong action',
+        LOGIN_FAILED:   'Invalid Login',
+        DEFAULT:        'Unknown issue',
+        EMAIL_DUP :     'Email is registered already'
     }
 };

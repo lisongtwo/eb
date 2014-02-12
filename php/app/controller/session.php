@@ -28,12 +28,13 @@ try{
     }else if(count($urlParts) == 3 && $reqType == "POST" && $urlParts[2] == 'login'){
         toLogin();
     }else{
-        echo 'wrong action';
+        throw new Exception('WRONG_ACTION');
     }
 }catch(Exception $e){
     echo json_encode(array('status'=>'fail', 'id'=>0, 'message'=>$e->getMessage()));
 }
 
+$db->close();
 
 function toSignup(){
     global $db;
@@ -41,7 +42,7 @@ function toSignup(){
     $firstName  = $_POST['firstName'];
     $lastName   = $_POST['lastName'];
     $email      = $_POST['email'];
-    $password   = md5($_POST['password']);
+    $password   = $_POST['password'];
 
     //duplication check
     $query = sprintf("SELECT COUNT(*) AS total FROM user WHERE email='%s'", mysql_real_escape_string($email));
@@ -64,5 +65,29 @@ function toSignup(){
 }
 
 function toLogin(){
-    echo json_encode(array('status'=>'success', 'id'=>0, 'message'=>''));
+    global $db;
+
+    $email      = $_POST['email'];
+    $password   = $_POST['password'];
+
+    //query user information from db
+    $query = sprintf("SELECT userId, firstName, lastName, email FROM user WHERE email='%s' AND password='%s'", mysql_real_escape_string($email), mysql_real_escape_string($password));
+
+    if($result = $db->query($query)){
+        $user = [];
+        while($row = $result->fetch_assoc()){
+            //$userId = $row['userId'];
+            $user = $row;
+        }
+
+        //var_dump($row);
+
+        if(sizeof($user) > 0){
+            echo json_encode(array('status'=>'success', 'id'=>0, 'message'=>''));
+        }else{
+            throw new Exception('LOGIN_FAILED');
+        }
+    }else{
+        throw new Exception('SYSTEM_ERROR');
+    }
 }
